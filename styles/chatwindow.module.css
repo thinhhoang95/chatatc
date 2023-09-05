@@ -1,0 +1,14 @@
+.chat_message_wrapper{
+    background-color: #43CC47;
+    padding-left: 10px;
+    padding-right: 18px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.chat_message_wrapper_bot{
+    background-color: #1982FC;
+}
