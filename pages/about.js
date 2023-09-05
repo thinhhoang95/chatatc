@@ -19,7 +19,7 @@ export default function About() {
                 
                 <h1>Modules</h1>
                 <p><strong>Trajectory Generation Module (TRAJEN): </strong> Native ChatATC First-Order Implementation.</p>
-                <p><strong>Language Processing Module (LPM): </strong> Montellama CODE version 31 August 2023. Montellama CODE is an instruction fine-tuned Large Language Model based on LLaMA 2 by Meta AI.</p>
+                <p><strong>Language Processing Module (LPM): </strong> Montellama Codex version 5 September 2023. Montellama Codex is an instruction fine-tuned Large Language Model based on LLaMA 2 by Meta AI.</p>
                 <div style={{height: "20px"}}></div>
             </Container>
         </Layout>

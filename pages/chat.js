@@ -6,23 +6,38 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { AiOutlineSend } from 'react-icons/ai';
 import Image from 'next/image'
 import { BsCheckLg } from 'react-icons/bs';
+import { GrClose } from 'react-icons/gr';
+
+import { useState } from "react";
 
 export default function ChatNow() {
+    const [showJobAlert, setShowJobAlert] = useState(true);
+
     return(
         <Layout>
             <Container style={{height: "calc(100vh - 130px)"}}>
-                <div style={{height: "60px"}}></div>
+                <div style={{height: "20px"}}></div>
                 <Row style={{height: "100%"}}>
                     <Col md="9">
+                        {showJobAlert && <Alert variant="primary" style={{"display": "flex", "flexDirection": "row"}}>
+                            <div style={{"flex": "1 1 auto", "flexWrap": "wrap"}}>
+                                I'm also looking for a job. If you like this, please checkout my CV and other projects at <a href="https://thinhhoang95.github.io">thinhhoang95.github.io</a>.
+                            </div>
+                            <div style={{"flex": "0 0 auto", "cursor": "pointer"}}>
+                                <GrClose onClick={() => setShowJobAlert(false)}></GrClose>
+                            </div>
+                        </Alert>}
                         <Alert variant="light">
                             <div style={{display: "flex"}}>
-                                <div style={{flex: "1"}}>ChatATC API <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
-                                <div style={{flex: "1"}}>Montellama CODE <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
+                                <div style={{flex: "1"}}>MQTT Server <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
+                                <div style={{flex: "1"}}>Montellama Codex <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
+                                <div style={{flex: "1"}}>Trajen Simulator <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
                             </div>
                         </Alert>
+
                         <Image src="/shortestcrop.gif" alt="Shortest Path" width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}/>
                         <div style={{display: 'flex', justifyContent: 'center', marginTop: 12}}>
-                            ChatATC & Montellama might be unreliable.
+                            ChatATC & Montellama Codex might be unreliable.
                         </div>
                     </Col>
                     <Col md="3">
