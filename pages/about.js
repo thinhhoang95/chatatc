@@ -12,14 +12,23 @@ export default function About() {
                 <p>ChatATC is fast, lightweight and accessible from all major browsers.</p>
                 <h1>Where this was made</h1>
                 <div style={{height: "20px"}}></div>
-                <div style={{display: "flex", "flexDirection": "column", "alignItems": "center"}}>
+                <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <Image src='/cats.jpg' alt="Building Y cats" width={400} height={300} style={{borderRadius: 10}} />
                     <p>Near a garage where the wild cats live.</p>
                 </div>
                 
                 <h1>Modules</h1>
-                <p><strong>Trajectory Generation Module (TRAJEN): </strong> Native ChatATC First-Order Implementation.</p>
-                <p><strong>Language Processing Module (LPM): </strong> Montellama Codex version 5 September 2023. Montellama Codex is an instruction fine-tuned Large Language Model based on LLaMA 2 by Meta AI.</p>
+                <div style={{display: "flex", flexDirection: "row"}}>
+                    <div style={{flex: "1 1 0px", display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column"}}>
+                        <Image src="/chatatc.png" alt="ChatATC" width={0} height={0} sizes="100vw" style={{width: "auto", height: "148px"}} />
+                        <div>Indigenous ChatATC Simulation Backend.</div>
+                    </div>
+                    <div style={{flex: "1 1 0px", display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column"}}>
+                        <Image src="/montellama_codex.png" alt="Montellama Codex" width={0} height={0} sizes="100vw" style={{width: "auto", height: "148px"}} />
+                        <div style={{textAlign: "center"}}>Montellama Codex version 5 September 2023. Montellama Codex is an instruction fine-tuned Large Language Model based on LLaMA 2 by <a href="https://ai.meta.com">Meta AI</a>.</div>
+                    </div>
+                </div>
+                
                 <div style={{height: "20px"}}></div>
             </Container>
         </Layout>

@@ -21,7 +21,7 @@ export default function ChatNow() {
                     <Col md="9">
                         {showJobAlert && <Alert variant="primary" style={{"display": "flex", "flexDirection": "row"}}>
                             <div style={{"flex": "1 1 auto", "flexWrap": "wrap"}}>
-                                I'm also looking for a job. If you like this, please checkout my CV and other projects at <a href="https://thinhhoang95.github.io">thinhhoang95.github.io</a>.
+                                I'm also looking for a job 😊. If you like this, please checkout my CV and other projects at <a href="https://thinhhoang95.github.io">thinhhoang95.github.io</a>.
                             </div>
                             <div style={{"flex": "0 0 auto", "cursor": "pointer"}}>
                                 <GrClose onClick={() => setShowJobAlert(false)}></GrClose>
@@ -31,7 +31,7 @@ export default function ChatNow() {
                             <div style={{display: "flex"}}>
                                 <div style={{flex: "1"}}>MQTT Server <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
                                 <div style={{flex: "1"}}>Montellama Codex <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
-                                <div style={{flex: "1"}}>Trajen Simulator <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
+                                <div style={{flex: "1"}}>Indigenous Simulator <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
                             </div>
                         </Alert>
 
