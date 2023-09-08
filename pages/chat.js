@@ -14,11 +14,10 @@ export default function ChatNow() {
     const [showJobAlert, setShowJobAlert] = useState(true);
 
     return(
-        <Layout>
-            <Container style={{height: "calc(100vh - 130px)"}}>
-                <div style={{height: "20px"}}></div>
+        <Layout fullHeight={true}>
+            <Container style={{height: "calc(100vh - 58px)"}}>
                 <Row style={{height: "100%"}}>
-                    <Col md="9">
+                    <Col md="9" className="noScrollbar" style={{height: "100%", overflowY: 'scroll', paddingTop: "20px"}}>
                         {showJobAlert && <Alert variant="primary" style={{"display": "flex", "flexDirection": "row"}}>
                             <div style={{"flex": "1 1 auto", "flexWrap": "wrap"}}>
                                 I'm also looking for a job 😊. If you like this, please checkout my CV and other projects at <a href="https://thinhhoang95.github.io">thinhhoang95.github.io</a>.
@@ -34,13 +33,14 @@ export default function ChatNow() {
                                 <div style={{flex: "1"}}>Indigenous Simulator <span style={{color: 'green'}}><BsCheckLg></BsCheckLg></span></div>
                             </div>
                         </Alert>
-
-                        <Image src="/shortestcrop.gif" alt="Shortest Path" width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}/>
-                        <div style={{display: 'flex', justifyContent: 'center', marginTop: 12}}>
+                        <div style={{display: "flex", "justifyContent": "center"}}>
+                            <Image src="/vvts.png" alt="Shortest Path" width={0} height={0} sizes="100vw" style={{ width: 'auto', height: '500px' }}/>
+                        </div>
+                        <div style={{display: 'flex', justifyContent: 'center', marginTop: 12, fontStyle: "italic"}}>
                             ChatATC & Montellama Codex might be unreliable.
                         </div>
                     </Col>
-                    <Col md="3">
+                    <Col md="3" style={{paddingTop: "20px"}}>
                         <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
                             <div style={{flex: "0"}}>
                                 <ChatWindow messages={[{message: "envoy 288, turn right heading 120", sender: "user", timestamp: "timestamp"},{message: "hdg('envoy 288', 120)", sender: "bot", timestamp: "timestamp"}]}></ChatWindow>

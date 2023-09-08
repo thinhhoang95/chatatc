@@ -6,3 +6,12 @@ h1 {
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
+.noScrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.noScrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

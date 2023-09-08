@@ -6,13 +6,13 @@ import Header from './header';
 import "../app/globals.css"
 
 
-export default function Layout({children})
+export default function Layout({children, fullHeight = false})
 {
     return(
         <>
             <Header></Header>
-            <Container>
-                <Row>
+            <Container style={{maxHeight: fullHeight ? "100%" : ""}}>
+                <Row style={{maxHeight: fullHeight ? "100%" : ""}}>
                     {children}
                 </Row>
             </Container>
