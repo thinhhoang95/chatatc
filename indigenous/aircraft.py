@@ -10,7 +10,7 @@ class Aircraft:
     def deg_to_rad(self, deg):
         return deg * math.pi / 180.0
     
-    def __init__(self, callsign, x, y, z, Vs, khi, mu, r_phi, V, c, kpz, kdz, kiz, kpvs, kpkhi, kdkhi, kikhi, kpmu, kdmu, kimu, kpV, kiV) -> None:
+    def __init__(self, callsign, x, y, z, Vs, khi, mu, r_phi, V, eta_z, eta_khi, eta_mu, eta_V, c, kpz, kdz, kiz, kpvs, kpkhi, kdkhi, kikhi, kpmu, kdmu, kimu, kpV, kiV) -> None:
         self.callsign = callsign
         
         # Initialize state variables
@@ -22,6 +22,10 @@ class Aircraft:
         self.mu = mu
         self.r_phi = r_phi
         self.V = V
+        self.eta_z = eta_z
+        self.eta_khi = eta_khi
+        self.eta_mu = eta_mu
+        self.eta_V = eta_V
         
         # Model parameters
         self.c = c
@@ -45,22 +49,26 @@ class Aircraft:
         self.khi_desired = khi
         self.z_desired = z
         
-    # State vector: [x, y, z, z_dot, khi, mu, r_phi, V, eta_z, eta_khi, eta_V]
+    # State vector: [x, y, z, z_dot, khi, mu, r_phi, V, eta_z, eta_khi, eta_mu, eta_V]
     
     def speed_to(self, V_desired):
         self.V_desired = V_desired
+        self.eta_V = 0
         
     def heading_to(self, khi_desired):
         self.khi_desired = khi_desired
+        self.eta_khi = 0
+        self.eta_mu = 0
         
     def altitude_to(self, z_desired):
         self.z_desired = z_desired
+        self.eta_z = 0
         
     def get_response(self, t_span, dt=0.05):
         t_vec = np.linspace(t_span[0], t_span[1], int((t_span[1] - t_span[0]) / dt))
         # response = np.zeros((len(t_vec), 7))
         
-        x_init = np.array([self.x, self.y, self.z, self.Vs, self.khi, self.mu, self.r_phi, self.V, 0, 0, 0, 0])
+        x_init = np.array([self.x, self.y, self.z, self.Vs, self.khi, self.mu, self.r_phi, self.V, self.eta_z, self.eta_khi, self.eta_mu, self.eta_V])
         sol = solve_ivp(fun = fx_dynamics, t_span=t_span, y0=x_init, args=(
             self.V_desired, self.khi_desired, self.z_desired, self.c, self.kpz, self.kdz, self.kiz, self.kpvs, self.kpkhi, self.kdkhi, self.kikhi, self.kpmu, self.kdmu, self.kimu, self.kpV, self.kiV
             ), t_eval=t_vec,method='RK45')
@@ -68,35 +76,20 @@ class Aircraft:
         self.sol_temp = sol
         return sol.t, sol.y
     
-    ### TO REVISE ###
     def commit_state_update(self): # to revise
         if self.sol_temp is not None:
-            self.xe = self.sol_temp.y[0][-1]
-            self.ye = self.sol_temp.y[1][-1]
-            self.he = self.sol_temp.y[2][-1]
-            self.he_dot = self.sol_temp.y[3][-1]
-            self.khi = self.sol_temp.y[4][-1]
-            self.mu = self.sol_temp.y[5][-1]
-            self.V = self.sol_temp.y[6][-1]
+            self.x = self.sol_temp.y[0, -1]
+            self.y = self.sol_temp.y[1, -1]
+            self.z = self.sol_temp.y[2, -1]
+            self.Vs = self.sol_temp.y[3, -1]
+            self.khi = self.sol_temp.y[4, -1]
+            self.mu = self.sol_temp.y[5, -1]
+            self.r_phi = self.sol_temp.y[6, -1]
+            self.V = self.sol_temp.y[7, -1]
+            self.eta_z = self.sol_temp.y[8, -1]
+            self.eta_khi = self.sol_temp.y[9, -1]
+            self.eta_mu = self.sol_temp.y[10, -1]
+            self.eta_V = self.sol_temp.y[11, -1]
             self.sol_temp = None
         else:
             print("WARNING: No state update to commit.")
-    
-    def get_usable_state(self, x): # to revise
-        xe = x[0]
-        ye = x[1]
-        he = x[2]
-        he_dot = x[3]
-        khi = x[4]
-        mu = x[5]
-        V = x[6]
-        
-        lat, lon = utm.to_latlon(xe, ye, 48, 'P')
-        hexx = ft_to_m(he)
-        he_dotx = ms_to_fpm(he_dot)
-        khix = rad_to_deg(khi)
-        mux = rad_to_deg(mu)
-        Vx = ms_to_knots(V)
-        
-        return np.array([lat, lon, hexx, he_dotx, khix, mux, Vx])
-        

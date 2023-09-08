@@ -17,19 +17,21 @@ vvts_utm = utm.from_latlon(vvts[0], vvts[1], force_zone_number=48, force_zone_le
 vn19 = Aircraft('VN19', x=vvts_utm[0] - 60_000, y=vvts_utm[1] + 80_000, z=ft_to_m(5_000),
                 Vs=ms_to_fpm(0),
                 khi=deg_to_rad(0), mu=deg_to_rad(0), r_phi = 0, V=knots_to_ms(210),
-                c=9.8,
-                kpz=5, kdz=10, kiz=1e-3,
-                kpvs=10,
+                eta_z=0, eta_khi=0, eta_mu=0, eta_V=0, # integrated error
+                c=9.8, # approx g
+                kpz=5, kdz=10, kiz=1e-3, # altitude reference control
+                kpvs=10, # FPA control
                 kpkhi=240.0, kdkhi=1600.0, kikhi=1.0, # heading control 
                 kpmu=0.25, kdmu=0.75, kimu=0.01, # roll reference control
-                kpV=0.1, kiV=0.1
+                kpV=0.1, kiV=0. # speed control
 )
 
 # vn19.heading_to(deg_to_rad(110))
 # vn19.altitude_to(ft_to_m(4_000))
 
-vn19.heading_to(deg_to_rad(45))
+#vn19.heading_to(deg_to_rad(45))
 vn19.altitude_to(ft_to_m(3_000))
+vn19.speed_to(knots_to_ms(170))
 
 # Get the state response for 3s
 t, response = vn19.get_response((0, 180), dt=0.05)
