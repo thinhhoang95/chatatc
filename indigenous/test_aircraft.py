@@ -34,7 +34,11 @@ vn19.altitude_to(ft_to_m(3_000))
 vn19.speed_to(knots_to_ms(170))
 
 # Get the state response for 3s
-t, response = vn19.get_response((0, 180), dt=0.05)
+t, response = vn19.get_response((0, 10), dt=0.05)
+vn19.commit_state_update()
+t, response = vn19.get_response((0, 30), dt=0.05)
+vn19.commit_state_update()
+t, response = vn19.get_response((0, 140), dt=0.05)
 
 # Plot the response
 import matplotlib.pyplot as plt

@@ -8,8 +8,8 @@ export default function About() {
             <Container>
                 <div style={{height: "20px"}}></div>
                 <h1>About</h1>
-                <p>ChatATC is a simple web-interface built to emulate the Air Traffic Radar Tracking Systems, based on Next.js and React.js. ChatATC can be easily extended through WebSockets to interface with trajectory generation and language processing modules.</p>
-                <p>ChatATC is fast, lightweight and accessible from all major browsers.</p>
+                <p>StratoEye is a simple web-interface built to emulate the Air Traffic Radar Tracking Systems, based on Next.js and React.js. StratoEye can be easily extended through WebSockets to interface with trajectory generation and language processing modules.</p>
+                <p>StratoEye is fast, lightweight and accessible from all major browsers.</p>
                 <h1>Where this was made</h1>
                 <div style={{height: "20px"}}></div>
                 <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -20,8 +20,8 @@ export default function About() {
                 <h1>Modules</h1>
                 <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{flex: "1 1 0px", display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column"}}>
-                        <Image src="/chatatc.png" alt="ChatATC" width={0} height={0} sizes="100vw" style={{width: "auto", height: "148px"}} />
-                        <div>Indigenous ChatATC Simulation Backend.</div>
+                        <Image src="/chatatc.png" alt="StratoEye" width={0} height={0} sizes="100vw" style={{width: "auto", height: "148px"}} />
+                        <div>Indigenous StratoEye Simulation Backend.</div>
                     </div>
                     <div style={{flex: "1 1 0px", display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column"}}>
                         <Image src="/montellama_codex.png" alt="Montellama Codex" width={0} height={0} sizes="100vw" style={{width: "auto", height: "148px"}} />

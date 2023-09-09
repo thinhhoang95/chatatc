@@ -2,9 +2,10 @@ import math
 from scipy.integrate import solve_ivp
 from dynamics import fx as fx_dynamics
 import numpy as np
-from converter import ft_to_m, ms_to_fpm, ms_to_knots, rad_to_deg
+from converter import *
 
 import utm
+import json
 
 class Aircraft:
     def deg_to_rad(self, deg):
@@ -93,3 +94,23 @@ class Aircraft:
             self.sol_temp = None
         else:
             print("WARNING: No state update to commit.")
+
+    def get_state(self):
+        lat, lon = utm.to_latlon(self.x, self.y, 48, 'P')
+        z_ft = m_to_ft(self.z)
+        state_to_serialize = {
+            "callsign": self.callsign,
+            "x": self.x,
+            "y": self.y,
+            "lat": lat,
+            "lon": lon,
+            "z": z_ft,
+            "Vs": ms_to_fpm(self.Vs),
+            "psi": degree_fixer(rad_to_deg(khi_to_psi(self.khi))),
+            "psi_desired": degree_fixer(rad_to_deg(khi_to_psi(self.khi_desired))),
+            "V_desired": ms_to_knots(self.V_desired),
+            "V": ms_to_knots(self.V),
+            "z_desired": m_to_ft(self.z_desired)
+        }
+        # json_str = json.dumps(state_to_serialize)
+        return state_to_serialize

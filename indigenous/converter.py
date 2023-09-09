@@ -41,3 +41,11 @@ def khi_to_psi(khi):
 
 def psi_to_khi(psi):
     return -psi + np.pi / 2
+
+def degree_fixer(degree):
+    # ensure degree is between 0 and 360
+    while degree < 0:
+        degree += 360
+    while degree >= 360:
+        degree -= 360
+    return degree
